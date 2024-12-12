@@ -1,30 +1,27 @@
 <script setup lang="ts">
 import data_people from '@/data/data_people';
-import { computed, onMounted, ref } from 'vue';
+import { ref } from 'vue';
 import type People from '@/types/People';
 import PeopleCard from '@/components/PeopleCard.vue';
 
+const people = ref<People[]>(sortPeopleByFirstName(data_people.getPeople()));
 
+let sort = (event: Event) => {
+  let element = (event.target as HTMLSelectElement);
 
-const peopleData = data_people.getPeople();
-const people = ref<People[]>(peopleData);
-
-// let sort = (event:Event)=>{
-  //   let element = (event.target as HTMLSelectElement);
-  //   if (element.selectedIndex==0) {
-    //     // people.value = ()=> sortPeopleByFirstName(people.value)
-    //     console.log(sortPeopleByFirstName(people.value))
-    //   }
-    // }
-    
-// onMounted(() => {
-//   people.value = await peopleData;
-// })
-
+  if (element.selectedIndex == 0) {
+    people.value = (sortPeopleByFirstName(data_people.getPeople()))
+  } else {
+    people.value = (sortPeopleByFirstNameDesc(data_people.getPeople()))
+  }
+}
 
 
 function sortPeopleByFirstName(people: People[]): People[] {
   return [...people].sort((a, b) => a.first_name.localeCompare(b.first_name));
+}
+function sortPeopleByFirstNameDesc(people: People[]): People[] {
+  return [...people].sort((a, b) => b.first_name.localeCompare(a.first_name));
 }
 
 </script>
@@ -32,20 +29,17 @@ function sortPeopleByFirstName(people: People[]): People[] {
 <template>
   <h1 class="display-5">Emberek</h1>
   <div class="container">
-      <label for="sort">Rendezés:</label>
-      <select  class="form-select my-2" name="sort">
-        <option value="0" selected>A-Z</option>
-        <option value="1">Z-A</option>
-      </select>
-        <div class="row">
-            <PeopleCard v-for="p in peopleData" :key="p.id" class="col-md-6 col-lg-3 mx-3" :person="p"/>
-            <div v-for="p in people">{{ p.id }}</div>
-        </div>
+    <label for="sort">Rendezés:</label>
+    <select class="form-select my-2" name="sort" @change="sort">
+      <option value="0" selected>A-Z</option>
+      <option value="1">Z-A</option>
+    </select>
+    <div class="row">
+      <PeopleCard v-for="p in people" :key="p.id" class="col-md-6 col-lg-3 mx-3 my-3" :person="p" />
     </div>
-  <PeopleCard/>  
+  </div>
+  <PeopleCard />
 </template>
 
 
-<style scoped>
-
-</style>
+<style scoped></style>

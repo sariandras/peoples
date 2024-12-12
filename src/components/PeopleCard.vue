@@ -7,16 +7,19 @@ import { RouterLink } from 'vue-router';
 const props = defineProps(['person'])
 const person = ref<People>(props.person)
 
+const isOk = ()=>{
+   return typeof person.value !== 'undefined';
+}
 
 
 
 </script>
 
 <template>
-   <div class="card" style="width: 18rem;">
+   <div class="card" style="width: 18rem;" v-if="isOk()">
          <router-link
-            :to="{name: 'ember', params: { id:person.id }}" :key="person.id">
-            <img class="card-img-top" :src="person.avatar" :alt="person.first_name + person.last_name">         
+            :to="{name: 'ember', params: { id:person.id }}">
+            <img class="card-img-top" :src="person.avatar" :alt="person.first_name + person.last_name">       
          </router-link>
       <div class="card-body">
          <router-link
