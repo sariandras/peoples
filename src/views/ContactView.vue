@@ -1,12 +1,27 @@
 <template>
     <div>
-        <button class="btn btn-warning mx-4" @click="$router.go(-1)">Go back</button>
-        <div class="float-right d-block text-center">
-            <h1>{{ person!.first_name }} {{ person!.last_name }}</h1>
-            <h2>{{ person!.email }}</h2>
-
+        <button class="m-4  btn btn-info shadow-lg" @click="$router.go(-1)">Click here to go back</button>
+        <div class="container mt-4">
+    <div class="card shadow-lg">
+        <div class="row no-gutters align-items-center">
+            <div class="col-md-4 text-center p-3">
+                <img 
+                    class="img-fluid rounded-circle" 
+                    :src="person!.avatar" 
+                    :alt="person!.first_name + ' ' + person!.last_name" 
+                    style="max-width: 150px;"
+                >
+            </div>
+            <div class="col-md-8">
+                <div class="card-body text-center text-md-left">
+                    <h1 class="card-title mb-2">{{ person!.first_name }} {{ person!.last_name }}</h1>
+                    <h2 class="card-subtitle text-muted mb-3">{{ person!.email }}</h2>
+                </div>
+            </div>
         </div>
-        <img class="img-thumbnail my-4" :src="person!.avatar" :alt="person!.first_name + person!.last_name">
+    </div>
+</div>
+
 
     </div>
 </template>
@@ -27,10 +42,14 @@ const person = computed(() => {
 </script>
 
 <style lang="css" scoped>
-img {
+/* img {
     margin: 0 auto;
     display: block;
     width: 500px;
     height: 500px;
+} */
+
+.pointer{
+    cursor: pointer;
 }
 </style>

@@ -38,7 +38,6 @@ function sortPeopleByFirstNameDesc(people: People[]): People[] {
       <PeopleCard v-for="p in people" :key="p.id" class="col-md-6 col-lg-3 mx-3 my-3" :person="p" />
     </div>
   </div>
-  <PeopleCard />
 </template>
 
 

@@ -16,9 +16,9 @@
 					<li class="nav-item">
 						<RouterLink class="nav-link" to="/emberek">Emberek</RouterLink>
 					</li>
-					<li class="nav-item">
+					<!-- <li class="nav-item">
 						<RouterLink class="nav-link" to="/keszitette">Készítette</RouterLink>
-					</li>
+					</li> -->
 
 				</ul>
 

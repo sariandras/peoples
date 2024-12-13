@@ -13,7 +13,7 @@ const router = createRouter({
   },
   routes: [
     { path: '/', redirect: 'emberek' },
-    { path: '/keszitette', component: () => import('@/views/ContactView.vue') },
+    // { path: '/keszitette', component: () => import('@/views/ContactView.vue') },
     { path: '/emberek', component: () => import('@/views/PeopleList.vue') },
     { path: '/emberek/:id', name: 'ember', component: () => import('@/views/ContactView.vue') },
   ],
